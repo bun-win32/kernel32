@@ -23,7 +23,7 @@
     "url": "git://github.com/obscuritysrl/bun-kernel32.git"
   },
   "type": "module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./index.ts",
   "keywords": [
     "bun",
@@ -47,6 +47,11 @@
     "bun": ">=1.1.0"
   },
   "scripts": {
-    "example": "bun ./example/kernel32.ts"
+    "example": "bun ./example/kernel32.ts",
+    "example:sysinfo": "bun ./example/system-info.ts",
+    "example:watcher": "bun ./example/file-watcher.ts",
+    "example:processes": "bun ./example/process-explorer.ts",
+    "example:processes:tree": "bun ./example/process-explorer.ts tree",
+    "example:console": "bun ./example/console-rainbow.ts"
   }
 }

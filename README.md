@@ -40,6 +40,18 @@ const ticks = Kernel32.GetTickCount64();
 console.log('PID=%s Ticks=%s', pid, ticks.toString());
 ```
 
+## Examples
+
+Run the included examples to see the library in action:
+
+```sh
+bun run example              # Basic usage
+bun run example:sysinfo      # System information dashboard
+bun run example:processes    # Process explorer (like Task Manager)
+bun run example:watcher      # File system watcher
+bun run example:console      # Console color demo
+```
+
 ## Notes
 
 - Either rely on lazy binding or call `Kernel32.Preload()`.

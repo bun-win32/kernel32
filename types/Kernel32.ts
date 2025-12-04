@@ -47,28 +47,6 @@ export enum FileAccess {
   GENERIC_WRITE = 0x4000_0000,
 }
 
-export enum FileMapAccess {
-  FILE_MAP_ALL_ACCESS = 0x000f_001f,
-  FILE_MAP_COPY = 0x0000_0001,
-  FILE_MAP_EXECUTE = 0x0000_0020,
-  FILE_MAP_READ = 0x0000_0004,
-  FILE_MAP_WRITE = 0x0000_0002,
-}
-
-export enum FileShareMode {
-  FILE_SHARE_DELETE = 0x0000_0004,
-  FILE_SHARE_READ = 0x0000_0001,
-  FILE_SHARE_WRITE = 0x0000_0002,
-}
-
-export enum FileCreationDisposition {
-  CREATE_ALWAYS = 2,
-  CREATE_NEW = 1,
-  OPEN_ALWAYS = 4,
-  OPEN_EXISTING = 3,
-  TRUNCATE_EXISTING = 5,
-}
-
 export enum FileAttributes {
   FILE_ATTRIBUTE_ARCHIVE = 0x0000_0020,
   FILE_ATTRIBUTE_COMPRESSED = 0x0000_0800,
@@ -85,6 +63,14 @@ export enum FileAttributes {
   FILE_ATTRIBUTE_TEMPORARY = 0x0000_0100,
 }
 
+export enum FileCreationDisposition {
+  CREATE_ALWAYS = 2,
+  CREATE_NEW = 1,
+  OPEN_ALWAYS = 4,
+  OPEN_EXISTING = 3,
+  TRUNCATE_EXISTING = 5,
+}
+
 export enum FileFlags {
   FILE_FLAG_BACKUP_SEMANTICS = 0x0200_0000,
   FILE_FLAG_DELETE_ON_CLOSE = 0x0400_0000,
@@ -98,10 +84,47 @@ export enum FileFlags {
   FILE_FLAG_WRITE_THROUGH = 0x8000_0000,
 }
 
+export enum FileMapAccess {
+  FILE_MAP_ALL_ACCESS = 0x000f_001f,
+  FILE_MAP_COPY = 0x0000_0001,
+  FILE_MAP_EXECUTE = 0x0000_0020,
+  FILE_MAP_READ = 0x0000_0004,
+  FILE_MAP_WRITE = 0x0000_0002,
+}
+
+export enum FileNotifyChangeFlags {
+  FILE_NOTIFY_CHANGE_ATTRIBUTES = 0x0000_0004,
+  FILE_NOTIFY_CHANGE_CREATION = 0x0000_0040,
+  FILE_NOTIFY_CHANGE_DIR_NAME = 0x0000_0002,
+  FILE_NOTIFY_CHANGE_FILE_NAME = 0x0000_0001,
+  FILE_NOTIFY_CHANGE_LAST_ACCESS = 0x0000_0020,
+  FILE_NOTIFY_CHANGE_LAST_WRITE = 0x0000_0010,
+  FILE_NOTIFY_CHANGE_SECURITY = 0x0000_0100,
+  FILE_NOTIFY_CHANGE_SIZE = 0x0000_0008,
+}
+
 export enum FilePointerMoveMethod {
   FILE_BEGIN = 0,
   FILE_CURRENT = 1,
   FILE_END = 2,
+}
+
+export enum FileShareMode {
+  FILE_SHARE_DELETE = 0x0000_0004,
+  FILE_SHARE_READ = 0x0000_0001,
+  FILE_SHARE_WRITE = 0x0000_0002,
+}
+
+export enum FindExInfoLevels {
+  FindExInfoBasic = 0,
+  FindExInfoMaxInfoLevel = 2,
+  FindExInfoStandard = 1,
+}
+
+export enum FindExSearchOp {
+  FindExSearchLimitToDevices = 2,
+  FindExSearchLimitToDirectories = 1,
+  FindExSearchNameMatch = 0,
 }
 
 export enum FormatMessageFlags {
@@ -255,16 +278,6 @@ export enum SystemErrorMode {
   SEM_NOOPENFILEERRORBOX = 0x0000_8000,
 }
 
-export enum ToolhelpSnapshotFlags {
-  TH32CS_INHERIT = 0x8000_0000,
-  TH32CS_SNAPALL = 0x0000_000f,
-  TH32CS_SNAPHEAPLIST = 0x0000_0001,
-  TH32CS_SNAPMODULE = 0x0000_0008,
-  TH32CS_SNAPMODULE32 = 0x0000_0010,
-  TH32CS_SNAPPROCESS = 0x0000_0002,
-  TH32CS_SNAPTHREAD = 0x0000_0004,
-}
-
 export enum ThreadAccessRights {
   THREAD_ALL_ACCESS = 0x001f_03ff,
   THREAD_DIRECT_IMPERSONATION = 0x0000_0200,
@@ -280,27 +293,14 @@ export enum ThreadAccessRights {
   THREAD_TERMINATE = 0x0000_0001,
 }
 
-export enum FindExInfoLevels {
-  FindExInfoBasic = 0,
-  FindExInfoMaxInfoLevel = 2,
-  FindExInfoStandard = 1,
-}
-
-export enum FindExSearchOp {
-  FindExSearchLimitToDevices = 2,
-  FindExSearchLimitToDirectories = 1,
-  FindExSearchNameMatch = 0,
-}
-
-export enum FileNotifyChangeFlags {
-  FILE_NOTIFY_CHANGE_ATTRIBUTES = 0x0000_0004,
-  FILE_NOTIFY_CHANGE_CREATION = 0x0000_0040,
-  FILE_NOTIFY_CHANGE_DIR_NAME = 0x0000_0002,
-  FILE_NOTIFY_CHANGE_FILE_NAME = 0x0000_0001,
-  FILE_NOTIFY_CHANGE_LAST_ACCESS = 0x0000_0020,
-  FILE_NOTIFY_CHANGE_LAST_WRITE = 0x0000_0010,
-  FILE_NOTIFY_CHANGE_SECURITY = 0x0000_0100,
-  FILE_NOTIFY_CHANGE_SIZE = 0x0000_0008,
+export enum ToolhelpSnapshotFlags {
+  TH32CS_INHERIT = 0x8000_0000,
+  TH32CS_SNAPALL = 0x0000_000f,
+  TH32CS_SNAPHEAPLIST = 0x0000_0001,
+  TH32CS_SNAPMODULE = 0x0000_0008,
+  TH32CS_SNAPMODULE32 = 0x0000_0010,
+  TH32CS_SNAPPROCESS = 0x0000_0002,
+  TH32CS_SNAPTHREAD = 0x0000_0004,
 }
 
 export enum WaitResult {
