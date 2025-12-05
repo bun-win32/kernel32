@@ -1,6 +1,6 @@
 import type { Pointer } from 'bun:ffi';
 
-export const INVALID_HANDLE_VALUE = -1 as HANDLE;
+export const INVALID_HANDLE_VALUE = -1n as HANDLE;
 export const INFINITE = 0xffffffff as DWORD;
 
 export const STD_HANDLE = {
@@ -325,14 +325,14 @@ export type DWORD_PTR = bigint;
 export type DWORDLONG = bigint;
 export type LCID = DWORD;
 export type FILETIME = Pointer;
-export type HANDLE = Pointer;
-export type HGLOBAL = Pointer;
-export type HINSTANCE = Pointer;
-export type HLOCAL = Pointer;
-export type HMODULE = Pointer;
-export type HPCON = Pointer;
-export type HWND = Pointer;
-export type HRSRC = Pointer;
+export type HANDLE = bigint;
+export type HGLOBAL = bigint;
+export type HINSTANCE = bigint;
+export type HLOCAL = bigint;
+export type HMODULE = bigint;
+export type HPCON = bigint;
+export type HWND = bigint;
+export type HRSRC = bigint;
 export type INT = number;
 export type INT_PTR = bigint;
 export type LARGE_INTEGER = bigint;
