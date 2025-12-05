@@ -519,9 +519,8 @@ class Kernel32 {
     FindVolumeMountPointClose: { args: [FFIType.ptr], returns: FFIType.i32 },
     FlsAlloc: { args: [FFIType.u32], returns: FFIType.u32 },
     FlsFree: { args: [FFIType.u32], returns: FFIType.i32 },
-    FlsGetValue: { args: [FFIType.u32], returns: FFIType.ptr }FFIType.u32], returns: FFIType.ptr },
-    FlsGetValue2: { args: [FFIType.u32], returns: FFIType.ptr },
-    FlsSetValue: { args: [FFIType.u32, FFIType.ptr], returns: FFIType.i32 }FFIType.u32, FFIType.ptr], returns: FFIType.i32 },
+    FlsGetValue: { args: [FFIType.u32], returns: FFIType.ptr },
+    FlsSetValue: { args: [FFIType.u32, FFIType.ptr], returns: FFIType.i32 },
     FlushConsoleInputBuffer: { args: [FFIType.u64], returns: FFIType.i32 },
     FlushFileBuffers: { args: [FFIType.u64], returns: FFIType.i32 },
     FlushInstructionCache: { args: [FFIType.ptr, FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
@@ -3394,11 +3393,6 @@ class Kernel32 {
   // https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-flsgetvalue
   public static FlsGetValue(dwFlsIndex: DWORD): LPVOID {
     return Kernel32.Load('FlsGetValue')(dwFlsIndex);
-  }
-
-  // https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-flsgetvalue2
-  public static FlsGetValue2(dwTlsIndex: DWORD): LPVOID {
-    return Kernel32.Load('FlsGetValue2')(dwTlsIndex);
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-flssetvalue
