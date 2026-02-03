@@ -1,6 +1,6 @@
 import type { Pointer } from 'bun:ffi';
 
-export const INVALID_HANDLE_VALUE = -1n as HANDLE;
+export const INVALID_HANDLE_VALUE = 0xFFFF_FFFF_FFFF_FFFFn as HANDLE;
 export const INFINITE = 0xffffffff as DWORD;
 
 export const STD_HANDLE = {
@@ -318,7 +318,8 @@ export type BYTE = number;
 export type CHAR = number;
 export type CONDITION_VARIABLE = Pointer;
 export type CONSOLE_SCREEN_BUFFER_INFO = Pointer;
-export type COORD = Pointer;
+/** COORD struct passed by value as u32: low 16 bits = X, high 16 bits = Y */
+export type COORD = number;
 export type CRITICAL_SECTION = Pointer;
 export type DWORD = number;
 export type DWORD_PTR = bigint;

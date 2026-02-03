@@ -3,6 +3,7 @@ import { type FFIFunction, FFIType, dlopen } from 'bun:ffi';
 import type {
   BOOL,
   BOOLEAN,
+  CHAR,
   CODEPAGE_ENUMPROC,
   COORD,
   DWORD,
@@ -71,6 +72,7 @@ import type {
   ULONGLONG,
   USHORT,
   VOID,
+  WCHAR,
 } from '../types/Kernel32';
 
 /**
@@ -474,7 +476,7 @@ class Kernel32 {
     FileTimeToSystemTime: { args: [FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     FillConsoleOutputAttribute: { args: [FFIType.u64, FFIType.u16, FFIType.u32, FFIType.u32, FFIType.ptr], returns: FFIType.i32 },
     FillConsoleOutputCharacterA: { args: [FFIType.u64, FFIType.u32, FFIType.u32, FFIType.u32, FFIType.ptr], returns: FFIType.i32 },
-    FillConsoleOutputCharacterW: { args: [FFIType.u64, FFIType.ptr, FFIType.u32, FFIType.u32, FFIType.ptr], returns: FFIType.i32 },
+    FillConsoleOutputCharacterW: { args: [FFIType.u64, FFIType.u16, FFIType.u32, FFIType.u32, FFIType.ptr], returns: FFIType.i32 },
     FindActCtxSectionGuid: { args: [FFIType.u32, FFIType.ptr, FFIType.u32, FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     FindActCtxSectionStringA: { args: [FFIType.u32, FFIType.ptr, FFIType.u32, FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     FindActCtxSectionStringW: { args: [FFIType.u32, FFIType.ptr, FFIType.u32, FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
@@ -3145,17 +3147,17 @@ class Kernel32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/console/fillconsoleoutputattribute
-  public static FillConsoleOutputAttribute(hConsoleOutput: HANDLE, wAttribute: USHORT, nLength: DWORD, dwWriteCoord: DWORD, lpNumberOfAttrsWritten: LPVOID): BOOL {
+  public static FillConsoleOutputAttribute(hConsoleOutput: HANDLE, wAttribute: USHORT, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfAttrsWritten: LPDWORD): BOOL {
     return Kernel32.Load('FillConsoleOutputAttribute')(hConsoleOutput, wAttribute, nLength, dwWriteCoord, lpNumberOfAttrsWritten);
   }
 
   // https://learn.microsoft.com/en-us/windows/console/fillconsoleoutputcharacter
-  public static FillConsoleOutputCharacterA(hConsoleOutput: HANDLE, cCharacter: DWORD, nLength: DWORD, dwWriteCoord: DWORD, lpNumberOfCharsWritten: LPVOID): BOOL {
+  public static FillConsoleOutputCharacterA(hConsoleOutput: HANDLE, cCharacter: CHAR, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL {
     return Kernel32.Load('FillConsoleOutputCharacterA')(hConsoleOutput, cCharacter, nLength, dwWriteCoord, lpNumberOfCharsWritten);
   }
 
   // https://learn.microsoft.com/en-us/windows/console/fillconsoleoutputcharacter
-  public static FillConsoleOutputCharacterW(hConsoleOutput: HANDLE, cCharacter: LPVOID, nLength: DWORD, dwWriteCoord: DWORD, lpNumberOfCharsWritten: LPVOID): BOOL {
+  public static FillConsoleOutputCharacterW(hConsoleOutput: HANDLE, cCharacter: WCHAR, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL {
     return Kernel32.Load('FillConsoleOutputCharacterW')(hConsoleOutput, cCharacter, nLength, dwWriteCoord, lpNumberOfCharsWritten);
   }
 
@@ -7082,12 +7084,12 @@ class Kernel32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/console/scrollconsolescreenbuffer
-  public static ScrollConsoleScreenBufferA(hConsoleOutput: HANDLE, lpScrollRectangle: LPVOID, lpClipRectangle: LPVOID, dwDestinationOrigin: DWORD, lpFill: LPVOID): BOOL {
+  public static ScrollConsoleScreenBufferA(hConsoleOutput: HANDLE, lpScrollRectangle: LPVOID, lpClipRectangle: LPVOID, dwDestinationOrigin: COORD, lpFill: LPVOID): BOOL {
     return Kernel32.Load('ScrollConsoleScreenBufferA')(hConsoleOutput, lpScrollRectangle, lpClipRectangle, dwDestinationOrigin, lpFill);
   }
 
   // https://learn.microsoft.com/en-us/windows/console/scrollconsolescreenbuffer
-  public static ScrollConsoleScreenBufferW(hConsoleOutput: HANDLE, lpScrollRectangle: LPVOID, lpClipRectangle: LPVOID, dwDestinationOrigin: DWORD, lpFill: LPVOID): BOOL {
+  public static ScrollConsoleScreenBufferW(hConsoleOutput: HANDLE, lpScrollRectangle: LPVOID, lpClipRectangle: LPVOID, dwDestinationOrigin: COORD, lpFill: LPVOID): BOOL {
     return Kernel32.Load('ScrollConsoleScreenBufferW')(hConsoleOutput, lpScrollRectangle, lpClipRectangle, dwDestinationOrigin, lpFill);
   }
 
@@ -7197,7 +7199,7 @@ class Kernel32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/console/setconsolecursorposition
-  public static SetConsoleCursorPosition(hConsoleOutput: HANDLE, dwCursorPosition: DWORD): BOOL {
+  public static SetConsoleCursorPosition(hConsoleOutput: HANDLE, dwCursorPosition: COORD): BOOL {
     return Kernel32.Load('SetConsoleCursorPosition')(hConsoleOutput, dwCursorPosition);
   }
 
@@ -7292,7 +7294,7 @@ class Kernel32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/console/setconsolescreenbuffersize
-  public static SetConsoleScreenBufferSize(hConsoleOutput: HANDLE, dwSize: DWORD): BOOL {
+  public static SetConsoleScreenBufferSize(hConsoleOutput: HANDLE, dwSize: COORD): BOOL {
     return Kernel32.Load('SetConsoleScreenBufferSize')(hConsoleOutput, dwSize);
   }
 
@@ -8465,17 +8467,17 @@ class Kernel32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/console/writeconsoleoutputattribute
-  public static WriteConsoleOutputAttribute(hConsoleOutput: HANDLE, lpAttribute: LPVOID, nLength: DWORD, dwWriteCoord: DWORD, lpNumberOfAttrsWritten: LPVOID): BOOL {
+  public static WriteConsoleOutputAttribute(hConsoleOutput: HANDLE, lpAttribute: LPVOID, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfAttrsWritten: LPDWORD): BOOL {
     return Kernel32.Load('WriteConsoleOutputAttribute')(hConsoleOutput, lpAttribute, nLength, dwWriteCoord, lpNumberOfAttrsWritten);
   }
 
   // https://learn.microsoft.com/en-us/windows/console/writeconsoleoutputcharacter
-  public static WriteConsoleOutputCharacterA(hConsoleOutput: HANDLE, lpCharacter: LPSTR, nLength: DWORD, dwWriteCoord: DWORD, lpNumberOfCharsWritten: LPVOID): BOOL {
+  public static WriteConsoleOutputCharacterA(hConsoleOutput: HANDLE, lpCharacter: LPSTR, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL {
     return Kernel32.Load('WriteConsoleOutputCharacterA')(hConsoleOutput, lpCharacter, nLength, dwWriteCoord, lpNumberOfCharsWritten);
   }
 
   // https://learn.microsoft.com/en-us/windows/console/writeconsoleoutputcharacter
-  public static WriteConsoleOutputCharacterW(hConsoleOutput: HANDLE, lpCharacter: LPWSTR, nLength: DWORD, dwWriteCoord: DWORD, lpNumberOfCharsWritten: LPVOID): BOOL {
+  public static WriteConsoleOutputCharacterW(hConsoleOutput: HANDLE, lpCharacter: LPWSTR, nLength: DWORD, dwWriteCoord: COORD, lpNumberOfCharsWritten: LPDWORD): BOOL {
     return Kernel32.Load('WriteConsoleOutputCharacterW')(hConsoleOutput, lpCharacter, nLength, dwWriteCoord, lpNumberOfCharsWritten);
   }
 
