@@ -338,8 +338,8 @@ class Kernel32 {
     CreateProcessA: { args: [FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.i32, FFIType.u32, FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     CreateProcessW: { args: [FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.i32, FFIType.u32, FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.ptr], returns: FFIType.i32 },
     CreatePseudoConsole: { args: [FFIType.u32, FFIType.ptr, FFIType.ptr, FFIType.u32, FFIType.ptr], returns: FFIType.u32 },
-    CreateRemoteThread: { args: [FFIType.u64, FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.u32, FFIType.ptr], returns: FFIType.u64 },
-    CreateRemoteThreadEx: { args: [FFIType.u64, FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.ptr, FFIType.u32, FFIType.u32, FFIType.ptr], returns: FFIType.u64 },
+    CreateRemoteThread: { args: [FFIType.u64, FFIType.ptr, FFIType.u64, FFIType.ptr, FFIType.u64, FFIType.u32, FFIType.ptr], returns: FFIType.u64 },
+    CreateRemoteThreadEx: { args: [FFIType.u64, FFIType.ptr, FFIType.u64, FFIType.ptr, FFIType.u64, FFIType.u32, FFIType.u32, FFIType.ptr], returns: FFIType.u64 },
     CreateSemaphoreA: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.ptr], returns: FFIType.u64 },
     CreateSemaphoreExA: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.ptr, FFIType.u32, FFIType.u32], returns: FFIType.u64 },
     CreateSemaphoreExW: { args: [FFIType.ptr, FFIType.i32, FFIType.i32, FFIType.ptr, FFIType.u32, FFIType.u32], returns: FFIType.u64 },
@@ -2466,7 +2466,7 @@ class Kernel32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethread
-  public static CreateRemoteThread(hProcess: HANDLE, lpThreadAttributes: LPSECURITY_ATTRIBUTES, dwStackSize: SIZE_T, lpStartAddress: LPTHREAD_START_ROUTINE, lpParameter: LPVOID, dwCreationFlags: DWORD, lpThreadId: LPDWORD): HANDLE {
+  public static CreateRemoteThread(hProcess: HANDLE, lpThreadAttributes: LPSECURITY_ATTRIBUTES, dwStackSize: SIZE_T, lpStartAddress: LPTHREAD_START_ROUTINE, lpParameter: bigint, dwCreationFlags: DWORD, lpThreadId: LPDWORD): HANDLE {
     return Kernel32.Load('CreateRemoteThread')(hProcess, lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, lpThreadId);
   }
 
@@ -2476,7 +2476,7 @@ class Kernel32 {
     lpThreadAttributes: LPSECURITY_ATTRIBUTES,
     dwStackSize: SIZE_T,
     lpStartAddress: LPTHREAD_START_ROUTINE,
-    lpParameter: LPVOID,
+    lpParameter: bigint,
     dwCreationFlags: DWORD,
     lpAttributeList: LPPROC_THREAD_ATTRIBUTE_LIST,
     lpThreadId: LPDWORD
