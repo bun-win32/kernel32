@@ -51,6 +51,7 @@ import type {
   LPTHREAD_START_ROUTINE,
   LPVOID,
   LPWSTR,
+  NULL,
   PCONSOLE_CURSOR_INFO,
   PCONSOLE_FONT_INFO,
   PCONSOLE_FONT_INFOEX,
@@ -2466,7 +2467,7 @@ class Kernel32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethread
-  public static CreateRemoteThread(hProcess: HANDLE, lpThreadAttributes: LPSECURITY_ATTRIBUTES, dwStackSize: SIZE_T, lpStartAddress: LPTHREAD_START_ROUTINE, lpParameter: bigint, dwCreationFlags: DWORD, lpThreadId: LPDWORD): HANDLE {
+  public static CreateRemoteThread(hProcess: HANDLE, lpThreadAttributes: LPSECURITY_ATTRIBUTES | NULL, dwStackSize: SIZE_T, lpStartAddress: LPTHREAD_START_ROUTINE, lpParameter: bigint, dwCreationFlags: DWORD, lpThreadId: LPDWORD | NULL): HANDLE {
     return Kernel32.Load('CreateRemoteThread')(hProcess, lpThreadAttributes, dwStackSize, lpStartAddress, lpParameter, dwCreationFlags, lpThreadId);
   }
 
@@ -4269,7 +4270,7 @@ class Kernel32 {
   }
 
   // https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-getfullpathnamew
-  public static GetFullPathNameW(lpFileName: LPWSTR, nBufferLength: DWORD, lpBuffer: LPWSTR, lpFilePart: LPVOID): DWORD {
+  public static GetFullPathNameW(lpFileName: LPWSTR, nBufferLength: DWORD, lpBuffer: LPWSTR, lpFilePart: LPVOID | NULL): DWORD {
     return Kernel32.Load('GetFullPathNameW')(lpFileName, nBufferLength, lpBuffer, lpFilePart);
   }
 

@@ -312,6 +312,7 @@ export enum WaitResult {
 
 export type ACCESS_MASK = number;
 export type BOOL = number;
+export type NULL = null;
 export type BOOLEAN = number;
 export type BY_HANDLE_FILE_INFORMATION = Pointer;
 export type BYTE = number;

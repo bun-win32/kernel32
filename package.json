@@ -23,7 +23,7 @@
     "url": "git://github.com/obscuritysrl/bun-kernel32.git"
   },
   "type": "module",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "main": "./index.ts",
   "keywords": [
     "bun",
