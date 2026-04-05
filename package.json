@@ -1,7 +1,7 @@
 {
   "author": "Stev Peifer <stev@bell.net>",
   "bugs": {
-    "url": "https://github.com/obscuritysrl/bun-kernel32/issues"
+    "url": "https://github.com/bun-win32/kernel32/issues"
   },
   "description": "Zero-dependency, zero-overhead Win32 KERNEL32 bindings for Bun (FFI) on Windows.",
   "devDependencies": {
@@ -12,18 +12,18 @@
   },
   "license": "MIT",
   "module": "index.ts",
-  "name": "bun-kernel32",
+  "name": "@bun-win32/kernel32",
   "peerDependencies": {
     "typescript": "^5"
   },
   "private": false,
-  "homepage": "https://github.com/obscuritysrl/bun-kernel32#readme",
+  "homepage": "https://github.com/bun-win32/kernel32#readme",
   "repository": {
     "type": "git",
-    "url": "git://github.com/obscuritysrl/bun-kernel32.git"
+    "url": "git://github.com/bun-win32/kernel32.git"
   },
   "type": "module",
-  "version": "1.0.13",
+  "version": "1.0.15",
   "main": "./index.ts",
   "keywords": [
     "bun",
