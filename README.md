@@ -1,10 +1,12 @@
-# bun-kernel32
+# @bun-win32/kernel32
 
 Zero-dependency, zero-overhead Win32 Kernel32 bindings for [Bun](https://bun.sh) on Windows.
 
 ## Overview
 
-`bun-kernel32` exposes the `kernel32.dll` exports using Bun's FFI. It provides a single class, `Kernel32`, which lazily binds native symbols on first use. You can optionally preload a subset or all symbols up-front via `Preload()`.
+`@bun-win32/kernel32` exposes the `kernel32.dll` exports using [Bun](https://bun.sh)'s FFI. It provides a single class, `Kernel32`, which lazily binds native symbols on first use. You can optionally preload a subset or all symbols up-front via `Preload()`.
+
+The bindings are strongly typed for a smooth DX in TypeScript.
 
 ## Features
 
@@ -23,13 +25,13 @@ Zero-dependency, zero-overhead Win32 Kernel32 bindings for [Bun](https://bun.sh)
 ## Installation
 
 ```sh
-bun add bun-kernel32
+bun add @bun-win32/kernel32
 ```
 
 ## Quick Start
 
 ```ts
-import Kernel32 from 'bun-kernel32';
+import Kernel32 from '@bun-win32/kernel32';
 
 // Optionally bind a subset up-front
 Kernel32.Preload(['GetCurrentProcessId', 'GetTickCount64']);
@@ -42,7 +44,7 @@ console.log('PID=%s Ticks=%s', pid, ticks.toString());
 
 ## Examples
 
-Run the included examples to see the library in action:
+Run the included examples:
 
 ```sh
 bun run example              # Basic usage
